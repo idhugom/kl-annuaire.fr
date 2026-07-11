@@ -1,0 +1,13 @@
+{
+  "name": "kl-annuaire",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "KL-Annuaire — média éditorial nouvelle génération. Moteur statique maison, zéro dépendance runtime.",
+  "engines": { "node": ">=20.11" },
+  "scripts": {
+    "build": "node build.mjs",
+    "dev": "node build.mjs && node scripts/serve.mjs",
+    "serve": "node scripts/serve.mjs"
+  }
+}
