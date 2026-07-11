@@ -156,11 +156,10 @@ export function layout(o) {
 <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="stylesheet" href="/assets/${css}" />
 <style>
-.only-light{display:none}.only-dark{display:inline-flex}
-:root[data-theme='dark'] .only-light,html:not([data-theme='light']) .only-light{display:inline-flex}
-:root[data-theme='dark'] .only-dark,html:not([data-theme='light']) .only-dark{display:none}
-@media (prefers-color-scheme: dark){:root:not([data-theme='light']) .only-light{display:inline-flex}:root:not([data-theme='light']) .only-dark{display:none}:root:not([data-theme='light']) .only-light,:root[data-theme='light'] .only-dark{}}
-:root[data-theme='light'] .only-light{display:none}:root[data-theme='light'] .only-dark{display:inline-flex}
+.only-dark{display:none}.only-light{display:inline-flex}
+@media (prefers-color-scheme: dark){:root:not([data-theme]) .only-dark{display:inline-flex}:root:not([data-theme]) .only-light{display:none}}
+:root[data-theme='dark'] .only-dark{display:inline-flex}:root[data-theme='dark'] .only-light{display:none}
+:root[data-theme='light'] .only-dark{display:none}:root[data-theme='light'] .only-light{display:inline-flex}
 </style>
 <script>try{var t=localStorage.getItem('kl-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
 ${head}
@@ -275,7 +274,7 @@ export function home(articles, categories) {
     </div>
     <div class="index-filter reveal">${chips}</div>
     <div class="index-list">${rows}</div>
-    <div class="index-more"><a class="btn btn--ghost" href="/index/">Voir les 590 articles ${I.arrow}</a></div>
+    <div class="index-more"><a class="btn btn--ghost" href="/index/">Voir les ${articles.length} articles ${I.arrow}</a></div>
   </div>
 </section>
 

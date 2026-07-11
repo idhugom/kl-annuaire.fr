@@ -214,18 +214,19 @@ function favicon() {
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="18" fill="#1f35ff"/><text x="50" y="52" font-family="Georgia,serif" font-size="52" font-weight="700" fill="#fff" text-anchor="middle" dominant-baseline="central" letter-spacing="-2">KL</text></svg>`;
 }
 
-/* apex → www + https handled by Cloudflare; SPA-style 404 fallback */
+/* Path-based redirects. Apex→www is host-based and handled by the Pages
+   Function (functions/_middleware.js), since _redirects sources are paths only. */
 function redirects() {
-  return `# Non-www to www (belt-and-braces; Cloudflare redirect rule is primary)
-https://kl-annuaire.fr/*   https://www.kl-annuaire.fr/:splat   301!
-http://kl-annuaire.fr/*    https://www.kl-annuaire.fr/:splat   301!
+  return `# Legacy WordPress paths → clean equivalents
+/category/date/*  /index/   301
+/category/*       /index/   301
+/wp-admin/*       /         301
+/wp-login.php     /         301
+/feed             /rss.xml  301
+/feed/            /rss.xml  301
+/author/*         /         301
 
-# Legacy WordPress paths → clean equivalents
-/category/date/*  /index/  301
-/wp-admin/*       /        301
-/feed             /rss.xml 301
-
-# 404 fallback
+# 404 fallback (static assets are served first; only unmatched paths hit this)
 /*  /404.html  404
 `;
 }
