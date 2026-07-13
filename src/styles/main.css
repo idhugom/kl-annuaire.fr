@@ -522,6 +522,7 @@ table.kl-table { width: 100%; border-collapse: collapse; font-size: 0.96rem; min
 /* Key takeaways box */
 .takeaways { border: 1.5px solid var(--line-strong); border-radius: var(--radius); padding: 1.6rem 1.8rem; background: var(--card); box-shadow: var(--shadow); }
 .takeaways h3 { font-family: var(--grotesk); font-weight: 700; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--kl); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+.takeaways h3 svg { flex: none; width: 1.15em; height: 1.15em; }
 .takeaways ul { display: flex; flex-direction: column; gap: 0.75rem; }
 .takeaways li { position: relative; padding-left: 1.9rem; font-size: 1.02rem; line-height: 1.45; }
 .takeaways li::before { content: '→'; position: absolute; left: 0; top: 0; color: var(--kl); font-weight: 700; }

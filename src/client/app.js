@@ -24,9 +24,15 @@
   });
 
   /* ---- Scroll reveals ---------------------------------------------------- */
-  const reveals = document.querySelectorAll('.reveal, .clip-reveal');
+  const reveals = document.querySelectorAll('.reveal');
+  // clip-reveal (hero wipe) clips the element's own pixels to zero width, so an
+  // IntersectionObserver never sees it as visible and would never reveal it.
+  // It sits above the fold, so play its wipe on load instead of on scroll.
+  const clipReveals = document.querySelectorAll('.clip-reveal');
+  const revealClips = () => clipReveals.forEach((el) => el.classList.add('in'));
   if (rm || !('IntersectionObserver' in window)) {
     reveals.forEach((el) => el.classList.add('in'));
+    revealClips();
   } else {
     const io = new IntersectionObserver(
       (entries) => {
@@ -37,6 +43,7 @@
       { rootMargin: '0px 0px -8% 0px', threshold: 0.06 }
     );
     reveals.forEach((el) => io.observe(el));
+    requestAnimationFrame(revealClips);
   }
 
   /* ---- Ticker: duplicate content so the marquee loops seamlessly --------- */

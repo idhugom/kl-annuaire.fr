@@ -204,13 +204,13 @@ function card(a, i, variant = '') {
 /* ---- home ---------------------------------------------------------------- */
 export function home(articles, categories) {
   const [lead, ...rest] = articles;
-  const side = rest.slice(0, 3);
-  const grid = rest.slice(3, 12);
+  const side = rest.slice(0, 6);
+  const grid = rest.slice(6, 15);
   const indexItems = articles.slice(0, 46);
   const cats = categories.slice(0, 9);
 
   const gridHtml = grid
-    .map((a, i) => card(a, i + 4, i === 0 ? 'card--wide' : i === 5 ? 'card--wide' : ''))
+    .map((a, i) => card(a, i + side.length + 1, i === 0 ? 'card--wide' : i === 5 ? 'card--wide' : ''))
     .join('');
 
   const chips = `<button class="chip" data-cat="all" aria-pressed="true">Tout</button>` +
