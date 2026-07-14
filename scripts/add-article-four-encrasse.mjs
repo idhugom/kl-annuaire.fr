@@ -1,0 +1,174 @@
+// One-off: add a hand-written editorial article + register its metadata.
+// Writes content/articles/<slug>.json and updates content/wp-raw/{posts,images}.json.
+import fs from 'node:fs';
+import path from 'node:path';
+
+const ROOT = path.resolve(import.meta.dirname, '..');
+const SLUG = 'comment-nettoyer-un-four-tres-encrasse-sans-produits-chimiques-agressifs';
+const TITLE = 'Comment nettoyer un four très encrassé sans produits chimiques agressifs ?';
+const DATE = '2026-07-14T09:30:00';
+
+const lead_html = `<p class="lead">Un four qui n'a pas été nettoyé depuis plusieurs mois affiche souvent une couche de graisse cuite, brunie et parfois carbonisée sur les parois, la vitre et la sole. Face à cette croûte tenace, le réflexe est de se tourner vers un spray dégraissant « spécial four », très corrosif et désagréable à respirer une fois le four rallumé. Il existe pourtant une méthode plus douce, tout aussi efficace sur un four très sale, qui repose sur trois ingrédients de base et sur un peu de patience.</p><p>Voici la marche à suivre, étape par étape, pour dégraisser un four fortement encrassé sans détergent agressif, ainsi que les cas particuliers (vitre, grilles, joint, four à catalyse ou à pyrolyse) et les erreurs qui font perdre du temps sans plus de résultat.</p>`;
+
+const body_html = `
+<h2 id="pourquoi-un-four-sencrasse-autant">Pourquoi un four s'encrasse-t-il autant ?</h2>
+<p>Chaque cuisson laisse des projections de graisse, de jus de cuisson ou de pâte qui retombent sur les parois, la sole et la vitre. À la chaleur du four, ces résidus ne brûlent pas complètement : ils cuisent à leur tour, se solidifient et forment une pellicule brune de plus en plus épaisse à chaque utilisation. Plus le four est chauffé sans être nettoyé entre-temps, plus cette couche durcit et adhère fortement à l'émail ou à l'acier inoxydable.</p>
+<p>C'est cette cuisson répétée, plus que la quantité de graisse elle-même, qui rend un four « très encrassé » difficile à nettoyer : les résidus ne sont plus simplement gras, ils sont en partie caramélisés voire carbonisés, un peu comme le fond d'une casserole oubliée sur le feu. Un nettoyage classique à l'éponge ne suffit alors plus ; il faut d'abord ramollir cette croûte avant de pouvoir la retirer sans forcer ni rayer les parois.</p>
+
+<h2 id="produits-naturels-qui-fonctionnent">Les produits naturels qui fonctionnent vraiment sur un four très sale</h2>
+<p>Trois produits du quotidien, combinés intelligemment, suffisent à dégraisser un four très encrassé sans recourir à un aérosol chimique :</p>
+<ul>
+<li><strong>Le bicarbonate de soude</strong>, mélangé à un peu d'eau, forme une pâte légèrement abrasive et alcaline qui décolle la graisse cuite sans rayer l'émail.</li>
+<li><strong>Le vinaigre blanc</strong>, pulvérisé sur le bicarbonate encore en place, provoque une légère effervescence qui aide à décoller les résidus les plus incrustés et neutralise les odeurs.</li>
+<li><strong>Le savon noir</strong> (ou, à défaut, du liquide vaisselle dégraissant), dilué dans de l'eau chaude, complète l'action du bicarbonate sur les zones grasses non carbonisées, notamment la vitre et les grilles.</li>
+</ul>
+<div class="kl-table-wrap"><table class="kl-table"><thead><tr><th>Zone du four</th><th>Produit le plus adapté</th><th>Temps de pose conseillé</th></tr></thead><tbody>
+<tr><td>Parois intérieures très encrassées</td><td>Pâte bicarbonate + vinaigre blanc</td><td>Toute la nuit (8 à 12 h)</td></tr>
+<tr><td>Sole du four (résidus carbonisés)</td><td>Bicarbonate en pâte épaisse</td><td>Toute la nuit</td></tr>
+<tr><td>Vitre intérieure (dépôt gras)</td><td>Savon noir dilué + éponge non abrasive</td><td>15 à 20 minutes</td></tr>
+<tr><td>Grilles et lèchefrite</td><td>Trempage bicarbonate + savon noir</td><td>1 à 2 heures, voire la nuit</td></tr>
+<tr><td>Joint en caoutchouc de la porte</td><td>Eau savonneuse tiède, brosse souple</td><td>Quelques minutes, sans trempage</td></tr>
+</tbody></table></div>
+<div class="kl-callout is-tip"><span class="kl-callout__label">Astuce</span><p>Pour renforcer l'action du bicarbonate sur une croûte vraiment épaisse, ajoutez une cuillère à soupe de savon noir liquide directement dans la pâte bicarbonate-eau avant de l'appliquer : le mélange gagne en pouvoir dégraissant sans devenir agressif pour l'émail.</p></div>
+
+<h2 id="methode-etape-par-etape">La méthode étape par étape pour un four très encrassé</h2>
+<p>Sur un four qui n'a pas été nettoyé depuis longtemps, mieux vaut prévoir de le laisser agir une nuit entière plutôt que de frotter énergiquement une croûte encore dure : c'est le temps de pose, plus que la force du frottage, qui fait la différence.</p>
+<ol>
+<li><strong>Retirez grilles, lèchefrite et plaques</strong> et mettez-les de côté à tremper séparément (voir plus bas).</li>
+<li><strong>Préparez une pâte épaisse</strong> avec du bicarbonate de soude et un peu d'eau, jusqu'à obtenir une texture qui tient sur une paroi verticale sans couler.</li>
+<li><strong>Appliquez généreusement</strong> cette pâte sur toutes les parois intérieures, la sole et le plafond du four, en insistant sur les zones les plus sombres et les plus épaisses.</li>
+<li><strong>Laissez agir toute la nuit</strong>, four éteint et froid, porte fermée ou entrouverte selon l'espace disponible dans la cuisine.</li>
+<li><strong>Le lendemain, pulvérisez du vinaigre blanc</strong> directement sur la pâte séchée : l'effervescence qui se produit aide à ramollir à nouveau les résidus les plus tenaces.</li>
+<li><strong>Essuyez avec une éponge humide non abrasive</strong>, en repassant plusieurs fois sur les zones résistantes ; la graisse ramollie doit se décoller par plaques.</li>
+<li><strong>Rincez à l'eau claire</strong> avec un chiffon propre pour retirer tout résidu de bicarbonate, qui pourrait sinon laisser une fine pellicule blanche à la prochaine cuisson.</li>
+</ol>
+<p>Sur les résidus vraiment carbonisés qui résistent encore après ce premier passage, renouvelez l'application de pâte sur la seule zone concernée et laissez poser à nouveau plusieurs heures plutôt que d'insister avec un objet dur ou abrasif, qui risquerait de rayer l'émail.</p>
+
+<h2 id="cas-particuliers">Cas particuliers : vitre, grilles, joint, four à catalyse ou à pyrolyse</h2>
+<p>Certains éléments du four demandent une approche un peu différente de celle des parois principales.</p>
+<div class="kl-compare"><div class="kl-compare__col is-pro"><h4>Ce qui se traite comme les parois</h4><ul><li>La sole et le plafond du four : pâte bicarbonate + vinaigre, temps de pose long.</li><li>La vitre intérieure : savon noir dilué, éponge douce, sans grattoir métallique.</li><li>Les grilles et la lèchefrite : trempage prolongé dans une bassine d'eau chaude savonneuse.</li></ul></div><div class="kl-compare__col is-con"><h4>Ce qui demande une précaution particulière</h4><ul><li>Le joint en caoutchouc de la porte : jamais de bicarbonate en pâte épaisse ni de grattoir, qui l'abîment à la longue.</li><li>Un four à catalyse : les parois catalytiques ne se nettoient pas au bicarbonate, qui bouche les micro-pores autocatalytiques.</li><li>Un four à pyrolyse : lancez un cycle de pyrolyse pour les parois autonettoyantes, et réservez la méthode bicarbonate à la vitre et aux accessoires.</li></ul></div></div>
+<p>Pour un four à catalyse, seule la vitre et les accessoires amovibles se nettoient avec la méthode décrite plus haut : les parois catalytiques elles-mêmes fonctionnent différemment et un nettoyage manuel risquerait de les rendre moins efficaces. De même, sur un four à pyrolyse, il est plus judicieux de laisser le cycle de pyrolyse s'occuper des parois très encrassées et de réserver le bicarbonate à la vitre, au joint et aux grilles, qui ne passent pas au four lors du cycle.</p>
+
+<h2 id="erreurs-frequentes">Erreurs fréquentes qui font perdre du temps</h2>
+<p>Quelques habitudes, pourtant répandues, ralentissent le nettoyage d'un four très encrassé sans améliorer le résultat :</p>
+<ul>
+<li><strong>Frotter immédiatement une croûte sèche</strong> sans laisser agir de pâte au préalable : la graisse cuite ne se décolle pas sous la seule force du frottage.</li>
+<li><strong>Utiliser un grattoir métallique ou une paille de fer</strong> sur l'émail ou la vitre : ces outils rayent la surface, ce qui favorise un nouvel encrassement plus rapide par la suite.</li>
+<li><strong>Faire chauffer le four juste après l'application de bicarbonate</strong> pour « accélérer » le nettoyage : la chaleur fixe au contraire les résidus au lieu de les ramollir.</li>
+<li><strong>Négliger le rinçage final</strong> à l'eau claire : un résidu de bicarbonate ou de savon noir peut fumer légèrement à la cuisson suivante.</li>
+<li><strong>Nettoyer le joint de porte avec un produit abrasif</strong> : il se fissure alors plus vite, ce qui nuit à l'étanchéité et à la performance énergétique du four.</li>
+</ul>
+<div class="kl-callout is-warning"><span class="kl-callout__label">Vigilance</span><p>N'utilisez jamais de bicarbonate en pâte sur les parois d'un four à catalyse : les micro-pores qui permettent l'autonettoyage catalytique risquent de se boucher, rendant la fonction moins efficace au fil des cuissons.</p></div>
+
+<h2 id="entretien-regulier">Un entretien régulier pour ne plus jamais en arriver là</h2>
+<p>Une fois le four remis à neuf, quelques réflexes simples évitent de reproduire un encrassement aussi important :</p>
+<ul>
+<li><strong>Essuyez les projections encore tièdes</strong> après chaque cuisson qui a débordé ou éclaboussé, plutôt que d'attendre qu'elles cuisent à nouveau au prochain passage au four.</li>
+<li><strong>Passez un coup de pâte bicarbonate légère</strong> une fois par mois environ, sans attendre que la couche de graisse s'épaississe.</li>
+<li><strong>Utilisez un plat ou une plaque avec rebord</strong> sous les préparations qui risquent de déborder (gratins, viandes marinées, pâtisseries généreuses).</li>
+<li><strong>Vérifiez le joint de porte</strong> de temps en temps : un joint distendu laisse échapper de la vapeur grasse qui retombe plus largement sur les parois.</li>
+</ul>
+<p>Cette même logique — dégraisser avec des produits doux mais laisser le temps d'agir plutôt que de frotter fort — s'applique à bien d'autres surfaces de la maison, qu'il s'agisse de traiter <a href="/comment-enlever-une-tache-de-graisse-sechee-sur-un-canape-en-tissu/">une tache de graisse séchée sur un canapé en tissu</a> ou de venir à bout de <a href="/quelles-techniques-de-nettoyage-sont-adaptees-pour-les-taches-dhuile-sur-le-lino/">taches d'huile tenaces sur un sol en lino</a>. Pour un nettoyage en profondeur plus large de la cuisine, <a href="/le-balai-vapeur-quels-sont-ses-avantages/">le balai vapeur</a> peut aussi compléter utilement cette routine sur les plans de travail et le carrelage.</p>
+`;
+
+const record = {
+  slug: SLUG,
+  title: TITLE,
+  date: DATE,
+  modified: DATE,
+  category: 'Maison',
+  tags: [
+    'nettoyage du four',
+    'four encrassé',
+    'bicarbonate de soude',
+    'produits naturels',
+    'entretien maison',
+    'dégraissage',
+  ],
+  dek: 'Bicarbonate, vinaigre blanc et savon noir : la méthode complète, étape par étape, pour dégraisser un four très encrassé sans détergent agressif.',
+  meta_description: 'Comment nettoyer un four très encrassé sans produit chimique agressif ? Bicarbonate, vinaigre blanc, savon noir : la méthode complète, étape par étape.',
+  image_caption: 'Un four fortement encrassé nettoyé à la pâte de bicarbonate et au vinaigre blanc, sans détergent chimique agressif.',
+  reading_time: 9,
+  key_takeaways: [
+    'La pâte bicarbonate + eau, laissée à poser toute une nuit, décolle même une croûte de graisse cuite très épaisse.',
+    'Le vinaigre blanc pulvérisé le lendemain matin ramollit à nouveau les résidus les plus tenaces avant l’essuyage.',
+    'Le savon noir dilué complète l’action du bicarbonate sur la vitre et les grilles, sans les rayer.',
+    'Un four à catalyse ne se nettoie pas au bicarbonate sur ses parois ; un four à pyrolyse gère seul ses parois via un cycle dédié.',
+    'Chauffer le four juste après l’application de bicarbonate fixe la graisse au lieu de la ramollir : c’est l’erreur à éviter en premier.',
+    'Un entretien léger mensuel évite de retrouver un four aussi encrassé par la suite.',
+  ],
+  toc: [
+    { id: 'pourquoi-un-four-sencrasse-autant', label: 'Pourquoi un four s’encrasse-t-il autant ?' },
+    { id: 'produits-naturels-qui-fonctionnent', label: 'Les produits naturels qui fonctionnent vraiment' },
+    { id: 'methode-etape-par-etape', label: 'La méthode étape par étape' },
+    { id: 'cas-particuliers', label: 'Cas particuliers : vitre, grilles, joint, catalyse, pyrolyse' },
+    { id: 'erreurs-frequentes', label: 'Erreurs fréquentes qui font perdre du temps' },
+    { id: 'entretien-regulier', label: 'Un entretien régulier pour ne plus jamais en arriver là' },
+  ],
+  lead_html,
+  body_html,
+  faq: [
+    {
+      q: 'Combien de temps laisser poser le bicarbonate sur un four très encrassé ?',
+      a_html: '<p>Idéalement toute une nuit, soit 8 à 12 heures. Sur une croûte de graisse cuite épaisse, un temps de pose court ne suffit pas à ramollir suffisamment les résidus pour qu’ils se décollent sans frotter fort.</p>',
+    },
+    {
+      q: 'Peut-on nettoyer un four à catalyse avec du bicarbonate ?',
+      a_html: '<p>Non, pas sur les parois catalytiques elles-mêmes : le bicarbonate en pâte risque de boucher les micro-pores qui assurent l’autonettoyage. En revanche, la vitre, le joint et les grilles peuvent être nettoyés avec la méthode décrite dans cet article.</p>',
+    },
+    {
+      q: 'Le bicarbonate risque-t-il de rayer l’émail du four ?',
+      a_html: '<p>Non, utilisé en pâte diluée avec de l’eau et essuyé avec une éponge non abrasive, le bicarbonate est suffisamment doux pour ne pas rayer l’émail, contrairement à un grattoir métallique ou une paille de fer.</p>',
+    },
+    {
+      q: 'Faut-il faire chauffer le four après avoir appliqué le bicarbonate ?',
+      a_html: '<p>Non, surtout pas. Faire chauffer le four à ce stade fixe les résidus au lieu de les ramollir. Laissez le four éteint et froid pendant toute la durée de pose, puis rincez avant la prochaine utilisation.</p>',
+    },
+    {
+      q: 'Comment nettoyer les grilles et la lèchefrite très encrassées ?',
+      a_html: '<p>Faites-les tremper séparément dans une bassine d’eau chaude additionnée de bicarbonate et de savon noir, pendant une à deux heures, voire toute la nuit pour les dépôts les plus épais. La graisse se détache ensuite facilement à l’éponge.</p>',
+    },
+    {
+      q: 'Le vinaigre blanc seul suffit-il à dégraisser un four très sale ?',
+      a_html: '<p>Utilisé seul, le vinaigre blanc dégraisse surtout les résidus légers. Sur un four très encrassé, il est plus efficace combiné au bicarbonate en pâte, appliqué en premier et laissé à poser avant la pulvérisation de vinaigre.</p>',
+    },
+  ],
+  _gen: { model: 'claude', at: DATE },
+};
+
+const artPath = path.join(ROOT, 'content/articles', SLUG + '.json');
+fs.writeFileSync(artPath, JSON.stringify(record, null, 2));
+console.log('article →', artPath);
+
+const postsPath = path.join(ROOT, 'content/wp-raw/posts.json');
+const posts = JSON.parse(fs.readFileSync(postsPath, 'utf8'));
+if (!posts.some((p) => p.slug === SLUG)) {
+  posts.unshift({
+    id: 900005,
+    slug: SLUG,
+    link: `https://www.kl-annuaire.fr/${SLUG}/`,
+    pathname: `/${SLUG}/`,
+    title: TITLE,
+    date: DATE,
+    modified: DATE,
+    excerpt: 'Bicarbonate, vinaigre blanc et savon noir : la méthode complète, étape par étape, pour dégraisser un four très encrassé sans détergent agressif.',
+    categories: [{ name: 'Maison', slug: 'maison' }],
+    featured_source: '',
+    featured_alt: 'Intérieur d’un four propre après nettoyage à la pâte de bicarbonate, éponge et chiffon posés à côté',
+  });
+  fs.writeFileSync(postsPath, JSON.stringify(posts, null, 2));
+  console.log('posts.json ← entry added');
+} else {
+  console.log('posts.json already has slug');
+}
+
+const imagesPath = path.join(ROOT, 'content/wp-raw/images.json');
+const images = JSON.parse(fs.readFileSync(imagesPath, 'utf8'));
+images[SLUG] = {
+  w1600: `/images/featured/${SLUG}-1600.webp`,
+  w800: `/images/featured/${SLUG}-800.webp`,
+  srcW: 1536,
+  srcH: 1024,
+};
+fs.writeFileSync(imagesPath, JSON.stringify(images, null, 2));
+console.log('images.json ← entry set');
