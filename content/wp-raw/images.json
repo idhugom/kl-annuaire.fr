@@ -3598,5 +3598,17 @@
     "w800": "/images/featured/pourquoi-jai-des-crampes-aux-mollets-la-nuit-et-comment-les-eviter-800.webp",
     "srcW": 1536,
     "srcH": 1024
+  },
+  "combien-de-temps-faut-il-pour-qu-un-chiot-soit-propre": {
+    "w1600": "/images/featured/combien-de-temps-faut-il-pour-qu-un-chiot-soit-propre-1600.webp",
+    "w800": "/images/featured/combien-de-temps-faut-il-pour-qu-un-chiot-soit-propre-800.webp",
+    "srcW": 1536,
+    "srcH": 1024
+  },
+  "pourquoi-ma-voiture-consomme-t-elle-plus-de-carburant-en-hiver": {
+    "w1600": "/images/featured/pourquoi-ma-voiture-consomme-t-elle-plus-de-carburant-en-hiver-1600.webp",
+    "w800": "/images/featured/pourquoi-ma-voiture-consomme-t-elle-plus-de-carburant-en-hiver-800.webp",
+    "srcW": 1536,
+    "srcH": 1024
   }
 }
