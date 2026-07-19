@@ -3610,5 +3610,17 @@
     "w800": "/images/featured/pourquoi-ma-voiture-consomme-t-elle-plus-de-carburant-en-hiver-800.webp",
     "srcW": 1536,
     "srcH": 1024
+  },
+  "pourquoi-mon-smartphone-chauffe-t-il-pendant-la-charge-et-comment-l-eviter": {
+    "w1600": "/images/featured/pourquoi-mon-smartphone-chauffe-t-il-pendant-la-charge-et-comment-l-eviter-1600.webp",
+    "w800": "/images/featured/pourquoi-mon-smartphone-chauffe-t-il-pendant-la-charge-et-comment-l-eviter-800.webp",
+    "srcW": 1536,
+    "srcH": 1024
+  },
+  "quelles-sont-les-dimensions-maximales-d-un-bagage-cabine-en-avion": {
+    "w1600": "/images/featured/quelles-sont-les-dimensions-maximales-d-un-bagage-cabine-en-avion-1600.webp",
+    "w800": "/images/featured/quelles-sont-les-dimensions-maximales-d-un-bagage-cabine-en-avion-800.webp",
+    "srcW": 1536,
+    "srcH": 1024
   }
 }
