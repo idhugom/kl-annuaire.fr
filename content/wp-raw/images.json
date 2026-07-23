@@ -3658,5 +3658,17 @@
     "w800": "/images/featured/pourquoi-les-enfants-font-des-cauchemars-vers-3-ans-et-comment-les-rassurer-800.webp",
     "srcW": 1536,
     "srcH": 1024
+  },
+  "comment-enlever-une-tache-de-vin-rouge-sechee-sur-un-tapis-en-laine": {
+    "w1600": "/images/featured/comment-enlever-une-tache-de-vin-rouge-sechee-sur-un-tapis-en-laine-1600.webp",
+    "w800": "/images/featured/comment-enlever-une-tache-de-vin-rouge-sechee-sur-un-tapis-en-laine-800.webp",
+    "srcW": 1536,
+    "srcH": 1024
+  },
+  "pourquoi-mon-chat-refuse-t-il-de-manger-ses-nouvelles-croquettes": {
+    "w1600": "/images/featured/pourquoi-mon-chat-refuse-t-il-de-manger-ses-nouvelles-croquettes-1600.webp",
+    "w800": "/images/featured/pourquoi-mon-chat-refuse-t-il-de-manger-ses-nouvelles-croquettes-800.webp",
+    "srcW": 1536,
+    "srcH": 1024
   }
 }
