@@ -3670,5 +3670,17 @@
     "w800": "/images/featured/pourquoi-mon-chat-refuse-t-il-de-manger-ses-nouvelles-croquettes-800.webp",
     "srcW": 1536,
     "srcH": 1024
+  },
+  "pourquoi-les-mains-gonflent-elles-en-fin-de-journee": {
+    "w1600": "/images/featured/pourquoi-les-mains-gonflent-elles-en-fin-de-journee-1600.webp",
+    "w800": "/images/featured/pourquoi-les-mains-gonflent-elles-en-fin-de-journee-800.webp",
+    "srcW": 1536,
+    "srcH": 1024
+  },
+  "pourquoi-les-vitres-de-la-voiture-sembuent-elles-a-linterieur-en-hiver": {
+    "w1600": "/images/featured/pourquoi-les-vitres-de-la-voiture-sembuent-elles-a-linterieur-en-hiver-1600.webp",
+    "w800": "/images/featured/pourquoi-les-vitres-de-la-voiture-sembuent-elles-a-linterieur-en-hiver-800.webp",
+    "srcW": 1536,
+    "srcH": 1024
   }
 }
